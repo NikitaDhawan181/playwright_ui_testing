@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-ui": "tsx src/test-ui.ts",
+    "test": "tsx src/run-tests.ts"
   },
   "repository": {
     "type": "git",

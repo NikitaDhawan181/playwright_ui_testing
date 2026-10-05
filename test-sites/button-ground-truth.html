@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Button Ground Truth</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 32px;
+        font-family: Arial, sans-serif;
+        color: #17202a;
+        background: #f7f9fb;
+      }
+
+      main {
+        display: grid;
+        gap: 18px;
+        max-width: 760px;
+      }
+
+      section {
+        display: grid;
+        gap: 10px;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+      }
+
+      .row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      button {
+        border: 1px solid #536878;
+        border-radius: 4px;
+        background: #ffffff;
+        color: #17202a;
+        font: 16px/1.25 Arial, sans-serif;
+        padding: 8px 14px;
+      }
+
+      button:disabled {
+        color: #5f6f7a;
+        background: #e8edf1;
+      }
+
+      #normal-pass {
+        width: 144px;
+      }
+
+      #long-fit-pass {
+        width: 420px;
+        white-space: nowrap;
+      }
+
+      #wrapped-pass {
+        width: 180px;
+        white-space: normal;
+        overflow: visible;
+      }
+
+      #disabled-pass {
+        width: 180px;
+      }
+
+      #horizontal-overflow-bug {
+        width: 140px;
+        white-space: nowrap;
+        overflow: visible;
+      }
+
+      #clipped-text-bug {
+        width: 132px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      #fixed-dimensions-bug {
+        width: 130px;
+        height: 38px;
+        white-space: normal;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Button Ground Truth</h1>
+
+      <section aria-label="Pass cases">
+        <h2>Expected PASS</h2>
+        <div class="row">
+          <button id="normal-pass" data-expected="PASS">Save</button>
+          <button id="long-fit-pass" data-expected="PASS">Long button text that still fits correctly</button>
+          <button id="wrapped-pass" data-expected="PASS">Wrapped button text renders correctly</button>
+          <button id="disabled-pass" data-expected="PASS" disabled>Disabled button</button>
+        </div>
+      </section>
+
+      <section aria-label="Bug cases">
+        <h2>Expected BUG</h2>
+        <div class="row">
+          <button
+            id="horizontal-overflow-bug"
+            data-expected="BUG"
+            data-expected-rules="button-text-overflow"
+          >
+            This button text overflows horizontally
+          </button>
+          <button
+            id="clipped-text-bug"
+            data-expected="BUG"
+            data-expected-rules="button-text-overflow,button-text-clipping"
+          >
+            This clipped text is hidden
+          </button>
+          <button
+            id="fixed-dimensions-bug"
+            data-expected="BUG"
+            data-expected-rules="button-text-overflow,button-text-clipping"
+          >
+            Content exceeds this fixed height button
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
